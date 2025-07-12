@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/Providers/ThemeProvider";
 import AppHeader from "@/components/AppHeader";
 import { ModeToggle } from "@/components/ModeToggle";
+import { SoundProvider } from "@/Providers/SoundEffectProvider";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -30,7 +31,7 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <SoundProvider>{children}</SoundProvider>
         </ThemeProvider>
       </body>
     </html>

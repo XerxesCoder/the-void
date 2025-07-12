@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSound } from "@/Providers/SoundEffectProvider";
 
 const container = {
   hidden: {},
@@ -28,8 +29,10 @@ export default function Home() {
   const [isClicked, setIsClicked] = useState(false);
   const [isParagraphVisible, setIsParagraphVisible] = useState(false);
   const router = useRouter();
+  const { playEffect } = useSound();
 
   const handleClick = () => {
+    playEffect("enter");
     setIsClicked(true);
   };
 
@@ -79,9 +82,9 @@ export default function Home() {
       <AnimatePresence>
         {isClicked && (
           <motion.div
-            initial={{ scale: 0, borderRadius: "100%" }}
-            animate={{ scale: 1, borderRadius: "0%" }}
-            exit={{ scale: 0, borderRadius: "100%" }}
+            initial={{ scale: 0, borderRadius: "100%", filter: "blur(200px)" }}
+            animate={{ scale: 1, borderRadius: "0%", filter: "blur(0px)" }}
+            exit={{ scale: 0, borderRadius: "100%", filter: "blur(200px)" }}
             transition={{ duration: 1, ease: "easeInOut" }}
             className="absolute inset-0 bg-white z-50 flex items-center justify-center"
             onAnimationComplete={() => setIsParagraphVisible(true)}
@@ -99,7 +102,7 @@ export default function Home() {
                       setIsParagraphVisible(false);
                     }, 1000);
                     setTimeout(() => {
-                      router.push("/landing?void=true");
+                      router.push("/paths?void=true");
                     }, 2000);
                   }}
                 >
