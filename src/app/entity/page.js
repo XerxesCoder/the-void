@@ -57,15 +57,20 @@ export default function Entity() {
       <VoidScreenEnter />
       <Canvas
         camera={{
-          position: [0, 0, 130], 
-          fov: 50, 
-          near: 0.1, 
+          position: [0, 0, 130],
+          fov: 50,
+          near: 0.1,
           far: 1000,
         }}
       >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
-        <TheEntity isResponding={isResponding} galaxy={galaxyObject.name} galaxycolors={galaxyObject.colors} coreColorHex={galaxyObject.coreColor} />
+        <TheEntity
+          isResponding={isResponding}
+          galaxy={galaxyObject.name}
+          galaxycolors={galaxyObject.colors}
+          coreColorHex={galaxyObject.coreColor}
+        />
         <OrbitControls />
         <Stars radius={200} depth={50} count={5555} factor={4} />
       </Canvas>
