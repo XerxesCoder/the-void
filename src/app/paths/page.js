@@ -1,9 +1,23 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import VoidWhiteScreen from "@/components/VoidWhiteScreen";
+import GalaxyButton from "@/components/NebulaButton";
+import OverlaySequencePaths from "@/components/Path/OverlayPaths";
+import VoidScreenEnter from "@/components/VoidScreens/VoidScreenEnter";
+import { GALAXIES } from "@/constants/galaxy";
+import { useSound } from "@/Providers/SoundEffectProvider";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Paths() {
+  const [isClicked, setIsClicked] = useState(false);
+  const [galaxyName, setGalaxyName] = useState("");
+  const { playEffect } = useSound();
+
+  const handleGalaxy = (galaxy) => {
+    setGalaxyName(galaxy);
+    playEffect("white");
+    setIsClicked(true);
+  };
+
   const containerVariants = {
     hidden: {},
     show: {
@@ -27,50 +41,65 @@ export default function Paths() {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 2.5,
+        staggerChildren: 0.3,
+        delayChildren: 0.3,
       },
     },
   };
 
   const buttonVariant = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, filter: "blur(20px)", y: 30 },
     show: {
       opacity: 1,
+      filter: "blur(0px)",
       y: 0,
-      transition: { duration: 0.4, ease: "easeOut" },
+      transition: { duration: 0.8, ease: "easeOut" },
     },
   };
+
   return (
     <main className="w-full h-screen flex justify-center items-center relative overflow-hidden">
-      <VoidWhiteScreen />
+      <VoidScreenEnter />
       <motion.div
         className="max-w-7xl w-full text-center z-10 space-y-5"
         variants={containerVariants}
         initial="hidden"
         animate="show"
       >
-        <motion.h1 className="text-xl sm:text-3xl" variants={fadeUpVariant}>
-          You Have Entered The Void
-        </motion.h1>
-        <motion.h1 className="text-lg sm:text-2xl " variants={fadeUpVariant}>
-          Choose Your PATH
-        </motion.h1>
-        <motion.div
-          className="flex flex-wrap justify-center items-center gap-6 mt-6"
-          variants={buttonContainer}
-          initial="hidden"
-          animate="show"
+        <motion.p
+          className="text-xl sm:text-3xl font-orbitron"
+          variants={fadeUpVariant}
         >
-          {["Nebula", "Andromeda", "Milky Way", "Eye of GOD", "PX-64"].map(
-            (label, index) => (
-              <motion.div key={index} variants={buttonVariant}>
-                <Button variant={"outline"}>{label}</Button>
-              </motion.div>
-            )
-          )}
+          ALIGNMENT COMPLETE.
+        </motion.p>
+        <motion.p
+          className="text-lg sm:text-2xl font-orbitron"
+          variants={fadeUpVariant}
+        >
+          The VOID has opened its branches.
+        </motion.p>
+        <motion.p
+          className="text-lg sm:text-2xl font-orbitron text-gray-300"
+          variants={fadeUpVariant}
+        >
+          Choose a galaxy. Each one whispers a different truth.
+        </motion.p>
+
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mt-12"
+          variants={buttonContainer}
+        >
+          {GALAXIES.map((galaxy, index) => (
+            <motion.div key={galaxy.name} variants={buttonVariant}>
+              <GalaxyButton
+                galaxy={galaxy}
+                onClick={() => handleGalaxy(galaxy.slug)}
+              />
+            </motion.div>
+          ))}
         </motion.div>
       </motion.div>
+      <OverlaySequencePaths isClicked={isClicked} galaxyName={galaxyName} />
     </main>
   );
 }

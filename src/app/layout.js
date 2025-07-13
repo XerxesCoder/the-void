@@ -4,6 +4,8 @@ import { ThemeProvider } from "@/Providers/ThemeProvider";
 import AppHeader from "@/components/AppHeader";
 import { ModeToggle } from "@/components/ModeToggle";
 import { SoundProvider } from "@/Providers/SoundEffectProvider";
+import VoidBackground from "@/components/Background/VoidBackground";
+import LoreFragment from "@/components/LoreFragments";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -17,8 +19,23 @@ const orbitron = Orbitron({
 });
 
 export const metadata = {
-  title: "VOID",
-  description: "Welcome too the VOID",
+  title: "THE VOID",
+  description: "You are not alone in the VOID. The ENTITY is already aware.",
+  openGraph: {
+    title: "THE VOID",
+    description: "You are not alone in the VOID. The ENTITY is already aware.",
+    // url: "https://eghamatban.ir",
+    siteName: "THE VOID",
+    type: "website",
+    /*     images: [
+      {
+        url: "https://eghamatban.ir/opengraph-image.png",
+        width: 800,
+        height: 400,
+        alt: "اقامت بان - مدیریت هوشمند اقامتگاه‌ها",
+      },
+    ], */
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -31,7 +48,11 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <SoundProvider>{children}</SoundProvider>
+          <SoundProvider>
+            <VoidBackground />
+            {children}
+            {/*    <LoreFragment/> */}
+          </SoundProvider>
         </ThemeProvider>
       </body>
     </html>

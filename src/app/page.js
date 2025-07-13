@@ -1,9 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSound } from "@/Providers/SoundEffectProvider";
+import OverlaySequence from "@/components/Landing/Overlay";
 
 const container = {
   hidden: {},
@@ -27,8 +28,6 @@ export default function Home() {
   const heading = "WELCOME TO THE VOID";
   const [showParagraph, setShowParagraph] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-  const [isParagraphVisible, setIsParagraphVisible] = useState(false);
-  const router = useRouter();
   const { playEffect } = useSound();
 
   const handleClick = () => {
@@ -69,8 +68,7 @@ export default function Home() {
              text-lg sm:text-2xl xl:text-4xl 
              cursor-pointer 
              font-orbitron font-semibold
-             hover:animate-pulse
-             transition-all duration-300 
+             animate-pulse
              drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
             onClick={handleClick}
           >
@@ -79,40 +77,7 @@ export default function Home() {
         )}
       </motion.div>
 
-      <AnimatePresence>
-        {isClicked && (
-          <motion.div
-            initial={{ scale: 0, borderRadius: "100%", filter: "blur(200px)" }}
-            animate={{ scale: 1, borderRadius: "0%", filter: "blur(0px)" }}
-            exit={{ scale: 0, borderRadius: "100%", filter: "blur(200px)" }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-            className="absolute inset-0 bg-white z-50 flex items-center justify-center"
-            onAnimationComplete={() => setIsParagraphVisible(true)}
-          >
-            <AnimatePresence>
-              {isParagraphVisible && (
-                <motion.p
-                  initial={{ opacity: 0, filter: "blur(14px)" }}
-                  animate={{ opacity: 1, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, filter: "blur(14px)" }}
-                  transition={{ duration: 1.5 }}
-                  className="text-black text-xl text-center font-bold sm:text-4xl md:text-5xl font-orbitron tracking-widest"
-                  onAnimationComplete={() => {
-                    setTimeout(() => {
-                      setIsParagraphVisible(false);
-                    }, 1000);
-                    setTimeout(() => {
-                      router.push("/paths?void=true");
-                    }, 2000);
-                  }}
-                >
-                  YOUR JOURNEY BEGINS NOW
-                </motion.p>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <OverlaySequence isClicked={isClicked} />
     </main>
   );
 }
