@@ -69,8 +69,8 @@ export default function Home() {
             onClick={handleClick}
           >
             <div className="relative group cursor-pointer px-8 py-4">
-              <div className="absolute inset-0 rounded-lg border border-white/30 group-hover:border-white transition-all duration-500 ease-in-out" />
-
+              <div className="absolute inset-0 rounded-lg border border-white/30 group-hover:border-white transition-all duration-500 ease-in-out z-10" />
+              <div className="bg-gray-950 group-hover:bg-gray-950/50 backdrop-blur-md absolute inset-0 rounded-lg "/>
               <p className="relative z-10 text-lg sm:text-2xl xl:text-4xl font-orbitron font-semibold text-white tracking-widest drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
                 FIND YOUR WAY
               </p>

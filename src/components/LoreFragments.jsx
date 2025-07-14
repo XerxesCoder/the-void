@@ -44,7 +44,7 @@ export default function LoreFragment() {
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: -40, scale: 0.95 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="relative p-5 bg-gradient-to-br from-[#1a0329]/90 to-[#0e001c]/90 backdrop-blur-lg border-l-4 border-violet-600 shadow-2xl rounded-r-2xl"
+            className="relative p-5 bg-gray-950 backdrop-blur-lg border-l-4 border-violet-600 shadow-2xl rounded-r-2xl"
           >
             <motion.h3
               className="text-violet-400 font-orbitron uppercase tracking-wide text-xs mb-1 animate-pulse"
