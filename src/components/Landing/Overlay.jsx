@@ -4,12 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
-const typewriterLines = [
-  "YOUR JOURNEY BEGINS",
-  "[connecting...]",
-  "ANOMALY DETECTED — SIGNAL LOCKED",
-  "ENTITY IS AWARE OF YOU",
-];
+const typewriterLines = ["YOUR JOURNEY BEGINS", "ENTITY IS AWARE OF YOU"];
 
 export default function OverlaySequence({ isClicked }) {
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
@@ -24,9 +19,9 @@ export default function OverlaySequence({ isClicked }) {
       for (let i = 0; i < typewriterLines.length; i++) {
         setCurrentLineIndex(i);
         setIsVisible(true);
-        await new Promise((res) => setTimeout(res, 2500)); // display time
+        await new Promise((res) => setTimeout(res, 2500));
         setIsVisible(false);
-        await new Promise((res) => setTimeout(res, 800)); // fade-out gap
+        await new Promise((res) => setTimeout(res, 800));
       }
 
       setTimeout(() => {

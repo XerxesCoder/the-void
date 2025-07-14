@@ -27,7 +27,7 @@ export default function VoidBackground() {
       mountRef.current.appendChild(renderer.domElement);
 
       const starGeo = new THREE.BufferGeometry();
-      const starCount = 3000;
+      const starCount = 4444;
       const positions = new Float32Array(starCount * 3);
       const colors = new Float32Array(starCount * 3);
 

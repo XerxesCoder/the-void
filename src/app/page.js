@@ -1,8 +1,7 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useSound } from "@/Providers/SoundEffectProvider";
 import OverlaySequence from "@/components/Landing/Overlay";
 
@@ -20,7 +19,8 @@ const letter = {
   show: {
     y: 0,
     opacity: 1,
-    transition: { type: "spring", damping: 12, stiffness: 200 },
+
+    transition: { type: "spring", damping: 30, stiffness: 220 },
   },
 };
 
@@ -59,21 +59,23 @@ export default function Home() {
             </motion.span>
           ))}
         </h1>
+
         {showParagraph && (
-          <motion.p
-            initial={{ opacity: 0, filter: "blur(14px)" }}
+          <motion.div
+            initial={{ opacity: 0, filter: "blur(30px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="absolute bottom-[30%] left-1/2 -translate-x-1/2 
-             text-lg sm:text-2xl xl:text-4xl 
-             cursor-pointer 
-             font-orbitron font-semibold
-             animate-pulse
-             drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+            className="absolute bottom-[30%] left-1/2 -translate-x-1/2 z-50"
             onClick={handleClick}
           >
-            FIND YOUR WAY
-          </motion.p>
+            <div className="relative group cursor-pointer px-8 py-4">
+              <div className="absolute inset-0 rounded-lg border border-white/30 group-hover:border-white transition-all duration-500 ease-in-out" />
+
+              <p className="relative z-10 text-lg sm:text-2xl xl:text-4xl font-orbitron font-semibold text-white tracking-widest drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
+                FIND YOUR WAY
+              </p>
+            </div>
+          </motion.div>
         )}
       </motion.div>
 

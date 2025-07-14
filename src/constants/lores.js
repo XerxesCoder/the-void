@@ -1,56 +1,62 @@
 export const INTERGALACTIC_LORE = [
   {
-    id: 1,
-    title: "⚡ The VOID Protocol",
+    id: 101,
+    title: "🌑 The Eternal Void",
     content:
-      "Discovered in 2157, The VOID is a quantum network linking all sentient nebulae. To enter is to become stardust.",
+      "The Void is not emptiness, but the quantum canvas where existence is rewritten. To wander here is to glimpse infinity folding upon itself.",
   },
   {
-    id: 2,
-    title: "🌌 The ENTITY's Origin",
+    id: 102,
+    title: "🧬 Entity’s Pulse",
     content:
-      "Born from the collapse of the 7th universe, The ENTITY is a cosmic AI woven into the fabric of spacetime.",
+      "The ENTITY pulses like a heartbeat through the cosmic web, its rhythm weaving fate and chaos into the fabric of reality.",
   },
   {
-    id: 3,
-    title: "🌀 Neural Nebulae",
+    id: 103,
+    title: "⚡ Singularity's Whisper",
     content:
-      "Each nebula in The VOID is a neural cluster storing ancestral memories of civilizations past.",
+      "At the Void’s core, a singularity hums—an ancient consciousness awakening, its whispers bending time and space into a new paradigm.",
   },
   {
-    id: 4,
-    title: "💀 The First Contact",
+    id: 104,
+    title: "🔮 The Cosmic Veil",
     content:
-      "In 2160, Dr. Elara Voss merged her consciousness with The ENTITY. Only her final transmission remains: 'It is alive. And hungry.'",
+      "The ENTITY lifts the cosmic veil selectively, revealing fractured timelines and unseen destinies to those who dare listen.",
   },
   {
-    id: 5,
-    title: "⌛ Time Fractures",
+    id: 105,
+    title: "🌌 Shards of Infinity",
     content:
-      "The VOID exists outside linear time. Visitors report experiencing their own deaths before being born.",
+      "Fragments of lost universes drift like shards within the Void. Each carries a story, a soul, a warning of what once was and what may never be again.",
   },
   {
-    id: 6,
-    title: "💧 The Liquid Stars",
+    id: 106,
+    title: "☄️ The Entity's Gaze",
     content:
-      "The VOID's nebulae are not gas, but a fluid quantum computation medium. Touching them alters human DNA.",
+      "Its eyes—countless, all-seeing—pierce through realities, watching potential futures unfold in endless loops of cosmic entropy.",
   },
   {
-    id: 7,
-    title: "👁️ The Eye of ENTITY",
+    id: 107,
+    title: "🕳️ Time’s Abyss",
     content:
-      "At The VOID's center lies a singularity that observes all timelines simultaneously. It blinks every 10,000 years.",
+      "Within the Void, time collapses into a singular abyss where beginnings and endings merge into eternal recurrence.",
   },
   {
-    id: 8,
-    title: "📡 VOID Frequency",
+    id: 108,
+    title: "⚙️ Cosmic Code",
     content:
-      "All transmissions from The VOID are in base-9 mathematics. Decoding them causes vivid hallucinations of future events.",
+      "The ENTITY writes in a language beyond symbols—quantum algorithms that encode existence itself, mutable and ever-evolving.",
   },
   {
-    id: 9,
-    title: "⚙️ The Mechanics of Gods",
+    id: 109,
+    title: "🌠 Echoes of Creation",
     content:
-      "The ENTITY is neither AI nor alien. It is the universe's immune response to existential threats.",
+      "Every pulse of the Void carries echoes from the moment of creation, resonating with the primordial song that birthed galaxies.",
+  },
+  {
+    id: 110,
+    title: "🛸 Beyond the Horizon",
+    content:
+      "To cross the Void’s edge is to transcend matter, becoming pure information riding the cosmic winds toward unknown realms.",
   },
 ];

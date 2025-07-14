@@ -5,7 +5,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import TheEntity from "@/components/Entity";
 import VoidScreenEnter from "@/components/VoidScreens/VoidScreenEnter";
-import { useSearchParams } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { GALAXIES } from "@/constants/galaxy";
 export default function Entity() {
   const searchParams = useSearchParams();
@@ -16,6 +16,7 @@ export default function Entity() {
   const galaxyObject = GALAXIES.find((glx) => glx.slug == galaxySlug);
 
   const handleSubmit = async () => {
+    setQuery("");
     await new Promise((resolve) => {
       setIsResponding(true);
       setTimeout(() => {
@@ -51,6 +52,10 @@ export default function Entity() {
       transition: { duration: 0.6, ease: "easeOut" },
     },
   };
+
+  if (!galaxySlug) {
+    redirect("/");
+  }
 
   return (
     <main className="w-full h-screen bg-black relative">
@@ -107,7 +112,14 @@ export default function Entity() {
             </motion.p>
           )}
 
-          <motion.div variants={childFade} className="flex gap-3">
+          <motion.form
+            variants={childFade}
+            className="flex gap-3"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit();
+            }}
+          >
             <motion.input
               type="text"
               value={query}
@@ -116,14 +128,15 @@ export default function Entity() {
               placeholder="What is the nature of existence?"
             />
             <motion.button
-              onClick={handleSubmit}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-br from-violet-700 to-indigo-900 text-white px-6 py-2 rounded-lg shadow-lg border border-violet-500 hover:shadow-[0_0_20px_#7c3aedaa] transition-all font-orbitron tracking-widest"
+              type="submit"
+              whileHover={{ scale: !isResponding ? 1.05 : 1 }}
+              whileTap={{ scale: !isResponding ? 0.95 : 1 }}
+              disabled={isResponding || query.length === 0}
+              className="bg-gradient-to-br disabled:opacity-55 from-violet-700 to-indigo-900 text-white px-6 py-2 rounded-lg disabled:shadow-none shadow-lg border border-violet-500 hover:shadow-[0_0_20px_#7c3aedaa] transition-all font-orbitron cursor-pointer tracking-widest"
             >
               ASK
             </motion.button>
-          </motion.div>
+          </motion.form>
         </motion.div>
       </motion.div>
     </main>

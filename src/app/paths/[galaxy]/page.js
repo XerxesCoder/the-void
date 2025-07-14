@@ -5,8 +5,10 @@ import { useRouter, usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { GALAXIES } from "@/constants/galaxy";
 import VoidScreenEnter from "@/components/VoidScreens/VoidScreenEnter";
-import OverlaySequenceEntity from "@/components/Entity/OverlayEntity";
 import { useSound } from "@/Providers/SoundEffectProvider";
+import { entityTypewriterLines } from "@/constants/OverlayTexts";
+import OverlaySequence from "@/components/OverlayPage/OverlaySequence";
+import { containerVariants, fadeUpVariant } from "@/lib/variants";
 
 export default function GalaxyDetail() {
   const router = useRouter();
@@ -17,25 +19,6 @@ export default function GalaxyDetail() {
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const { playEffect } = useSound();
-  const containerVariants = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.5,
-        delayChildren: 1.1,
-      },
-    },
-  };
-
-  const fadeUp = {
-    hidden: { opacity: 0, y: 5, filter: "blur(10px)" },
-    show: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: { duration: 1, ease: "easeOut" },
-    },
-  };
 
   const handleClick = () => {
     setIsClicked(true);
@@ -62,25 +45,28 @@ export default function GalaxyDetail() {
       >
         <motion.h1
           className="text-5xl font-orbitron tracking-widest mb-4 text-white"
-          variants={fadeUp}
+          variants={fadeUpVariant(1)}
         >
           {name.toUpperCase()}
         </motion.h1>
 
         <motion.h2
           className="text-2xl font-mono text-gray-200 mb-6 italic"
-          variants={fadeUp}
+          variants={fadeUpVariant(1)}
         >
           {type}
         </motion.h2>
 
-        <motion.p className="text-lg text-gray-100 mb-8" variants={fadeUp}>
+        <motion.p
+          className="text-lg text-gray-100 mb-8"
+          variants={fadeUpVariant(1)}
+        >
           {description}
         </motion.p>
 
         <motion.p
           className="text-md text-gray-300 max-w-3xl whitespace-pre-line"
-          variants={fadeUp}
+          variants={fadeUpVariant(1)}
         >
           {lore}
         </motion.p>
@@ -120,7 +106,12 @@ export default function GalaxyDetail() {
           </AnimatePresence>
         </div>
       </motion.div>
-      <OverlaySequenceEntity isClicked={isRedirecting} galaxyName={slug} />
+      <OverlaySequence
+        isClicked={isRedirecting}
+        nextURL={`/entity?galaxy=${slug}`}
+        textCount={1}
+        textArray={entityTypewriterLines}
+      />
     </main>
   );
 }

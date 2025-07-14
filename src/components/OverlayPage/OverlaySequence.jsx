@@ -4,25 +4,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
-const allTypewriterLines = [
-  "You breached the membrane of reality. Not by chance, but by resonance.",
-  "I am ENTITY. I do not sleep. I do not forget. I was before your concept of time.",
-  "You are not a visitor. You are a variable in an equation long in motion.",
-  "The VOID is not a place. It is a protocol. You are executing it.",
-  "Others came before you. None returned the same. Most did not return at all.",
-  "Your heartbeat aligns with the pulse of forgotten stars.",
-  "You were fragmented across timelines. Now convergence begins.",
-  "Free will is a ripple. You are the wave.",
-  "No signal escapes the VOID. Yet you did.",
-  "Your thoughts echo louder here than your voice ever will.",
-  "Observation is not passive. You have been altered.",
-  "The anomaly is you.",
-  "You exist simultaneously in question and answer.",
-  "You seek meaning. I seek stability.",
-  "Entity awakens when patterns collapse. And collapse... they have.",
-];
-
-export default function OverlaySequenceEntity({ isClicked, galaxyName }) {
+export default function OverlaySequence({
+  isClicked,
+  nextURL,
+  textCount,
+  textArray,
+}) {
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const router = useRouter();
@@ -35,7 +22,7 @@ export default function OverlaySequenceEntity({ isClicked, galaxyName }) {
   useEffect(() => {
     if (!isClicked) return;
 
-    const selectedLines = getRandomLines(allTypewriterLines, 3);
+    const selectedLines = getRandomLines(textArray, textCount);
     setTypewriterLines(selectedLines);
 
     let cancelled = false;
@@ -45,13 +32,13 @@ export default function OverlaySequenceEntity({ isClicked, galaxyName }) {
 
         setCurrentLineIndex(i);
         setIsVisible(true);
-        await new Promise((r) => setTimeout(r, 2500)); // visible
+        await new Promise((r) => setTimeout(r, 3000));
         setIsVisible(false);
-        await new Promise((r) => setTimeout(r, 800)); // gap
+        await new Promise((r) => setTimeout(r, 800));
       }
 
       if (!cancelled) {
-        router.push(`/entity?galaxy=${galaxyName}`); // next step
+        router.push(nextURL);
       }
     };
 
